@@ -9,13 +9,13 @@ from urllib.parse import unquote
 from pyfiglet import figlet_format
 from cfonts import render
 from playwright.async_api import async_playwright
-☨
+
 # --- Hellish Colors ---
 COLORS = {
     'fred': '\033[38;5;196m',     # bright lava red
     'borange': '\033[38;5;208m',  # smoldering orange
-    'cblack': '\033[38;5;232m',# deep dark black/gray
-    'hyellow': '\033[38;5;220m', # glowing flame yellow
+    'cblack': '\033[38;5;232m',   # deep dark black/gray
+    'hyellow': '\033[38;5;220m',  # glowing flame yellow
     'reset': '\033[0m',
     'bold': '\033[1m',
 }
@@ -41,25 +41,40 @@ print(
 print(COLORS['hyellow'] + "🩸 Every step you take here is watched by unseen eyes… 🩸" + COLORS['reset'])
 print(COLORS['fred'] + "☩☨" * 35 + COLORS['reset'])
 
-password = getpass.getpass(f"{COLORS['borange']}🩸 Enter your secret key to continue:{COLORS['reset']} ").strip()
+password = getpass.getpass(
+    f"{COLORS['borange']}🩸 Enter your secret key to continue:{COLORS['reset']} "
+).strip()
 if password != "pyscriptqueen":
-    print(f"{COLORS['fred']}O, F1LTHY SΩUL, WHΩ DΛRΞS DΞFY LΩRD EΩN1X ΛND ΞNTΞR HΞLL UNΛNNΩUNCΞD!  
-THΞ 1NFΞRNΛL FLΛMΞS CLΛ1M YΩU, BΩDY ΛND SP1R1T, FΩR ΞTΞRN1TY!{COLORS['reset']}")
+    # FIXED: triple quotes to allow multiline text safely
+    print(
+        f"""{COLORS['fred']}O, F1LTHY SΩUL, WHΩ DΛRΞS DΞFY LΩRD EΩN1X ΛND ΞNTΞR HΞLL UNΛNNΩUNCΞD!
+THΞ 1NFΞRNΛL FLΛMΞS CLΛ1M YΩU, BΩDY ΛND SP1R1T, FΩR ΞTΞRN1TY!{COLORS['reset']}"""
+    )
     sys.exit(1)
 
-# --- Cute Welcome Screen ---
+# --- Welcome Screen ---
 os.system("cls" if os.name == "nt" else "clear")
 print(COLORS['fred'] + "☩☨" * 35 + COLORS['reset'])
 print(COLORS['borange'] + figlet_format("WELCOME", font="slant") + COLORS['reset'])
-print(COLORS['cblack'] + "♡♡ Welcome to the script of " + COLORS['fred'] + "Python Queen ANANYA ♡♡" + COLORS['reset'])
+print(
+    COLORS['cblack']
+    + "♡♡ Welcome to the script of "
+    + COLORS['fred']
+    + "Python Queen ANANYA ♡♡"
+    + COLORS['reset']
+)
 print(COLORS['hyellow'] + "☩☨ CURSΞD ΛND CRΛFTΞD BY EΩN1X ☨☩" + COLORS['reset'])
 print(COLORS['fred'] + "☩☨" * 35 + COLORS['reset'])
 
 # --- Logging ---
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO,
+                    format='%(asctime)s - %(levelname)s - %(message)s')
 
 # --- Name generation ---
-ufo_bases = ["sᴀᴛᴀɴ", "ʀᴇᴀᴘᴇʀ", "ɢᴏᴅ ᴏғ ʜᴇʟʟ", "ᴅᴇᴍᴏɴ", "ᴅᴏᴏᴍ", "ғᴜʀʏ", "ɴᴀʀᴋ ᴋᴀ ᴅᴇᴠᴛᴀ"]
+ufo_bases = [
+    "sᴀᴛᴀɴ", "ʀᴇᴀᴘᴇʀ", "ɢᴏᴅ ᴏғ ʜᴇʟʟ",
+    "ᴅᴇᴍᴏɴ", "ᴅᴏᴏᴍ", "ғᴜʀʏ", "ɴᴀʀᴋ ᴋᴀ ᴅᴇᴠᴛᴀ"
+]
 emoji_suffixes = ["⚰️", "💀", "🔯", "☠️", "🪦"]
 name_counter = count(1)
 used_names = set()
@@ -69,17 +84,25 @@ lock = asyncio.Lock()
 
 # --- Inputs ---
 banner()
-session_id = input(f"{COLORS['borange']}☩☨ MΛSTΞR OF HΞLL, GRΛNT MΞ THΞ SΞSSIΩN ID ☨☩:{COLORS['reset']} ").strip() or unquote("default_session_id")
-dm_url = input(f"{COLORS['hyellow']}ΞNTΞR DΛMNΞD L1NK:{COLORS['reset']} ").strip() or "https://www.instagram.com/direct/t/default/"
-user_prefix = input(f"{COLORS['cblack']}†☩☨ MORTΛL, NAME THΛT NΛKΞD BLOODY ΛSS WHO SHALL SCREAM FOREVΞR †☨:{COLORS['reset']} ").strip() or "Princess"
+session_id = input(
+    f"{COLORS['borange']}☩☨ MΛSTΞR OF HΞLL, GRΛNT MΞ THΞ SΞSSIΩN ID ☨☩:{COLORS['reset']} "
+).strip() or unquote("default_session_id")
+dm_url = input(
+    f"{COLORS['hyellow']}ΞNTΞR DΛMNΞD L1NK:{COLORS['reset']} "
+).strip() or "https://www.instagram.com/direct/t/default/"
+user_prefix = input(
+    f"{COLORS['cblack']}†☩☨ MORTΛL, NAME THΛT NΛKΞD BLOODY ΛSS WHO SHALL SCREAM FOREVΞR †☨:{COLORS['reset']} "
+).strip() or "Princess"
 
 try:
-    task_count = int(input(f"{COLORS['fred']}🩸HΞLL TΛSK CØUꋊT:{COLORS['reset']} ").strip())
+    task_count = int(
+        input(f"{COLORS['fred']}🩸HΞLL TΛSK CØUꋊT:{COLORS['reset']} ").strip()
+    )
 except ValueError:
     task_count = 5
 
 def generate_name():
-    """Generate a cute unique group name."""
+    """Generate a unique group name."""
     while True:
         base = random.choice(ufo_bases)
         emoji = random.choice(emoji_suffixes)
@@ -130,7 +153,7 @@ async def rename_loop(context):
             await asyncio.sleep(1.0)
 
 async def live_stats():
-    """Show live statistics of progress with girlish theme."""
+    """Show live statistics of progress."""
     while True:
         async with lock:
             print(
