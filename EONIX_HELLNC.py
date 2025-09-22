@@ -24,7 +24,7 @@ COLORS = {
 def banner():
     os.system("cls" if os.name == "nt" else "clear")
     print(COLORS['fred'] + "☩☨" * 35 + COLORS['reset'])
-    print(COLORS['borange'] + figlet_format("EONIX", font="toxic") + COLORS['reset'])
+    print(COLORS['borange'] + figlet_format("EONIX", font="bubble") + COLORS['reset'])
     print(COLORS['cblack'] + "The Rdp Killer : Eonix" + COLORS['reset'])
     print(COLORS['fred'] + "GOD OF HELL : EONIX| Version: 1" + COLORS['reset'])
     print(COLORS['hyellow'] + "Async Version⚰️" + COLORS['reset'])
@@ -200,3 +200,4 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
+
